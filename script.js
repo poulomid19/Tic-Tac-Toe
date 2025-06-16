@@ -18,6 +18,7 @@ let winningPattern = [
 
 let resetgame = ()=>{
     turn = true;
+    count=0;
     for(let box of boxes){
     box.disabled = false;
     box.innerText =""
@@ -56,6 +57,7 @@ boxes.forEach((box)=>{
     box.addEventListener("click",()=>{
       if(turn){
         box.innerText = "O"
+        box.style.color = "black"
         turn = false
         count++
       }
@@ -65,7 +67,8 @@ boxes.forEach((box)=>{
         turn = true
         count++
       }
-      if(count==9){
+      let iswinner = checkwinner()
+      if(!iswinner && count===9){
         gamedraw()
         box.disabled = true
       }
